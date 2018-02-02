@@ -8,7 +8,7 @@ Intro section
 1. [Implementation](#implementation)
 1. [Usage](#usage)
 1. [Testing](#testing)
-1. [LoadBalance](#loadBalance)
+1. [LoadBalance](#loadbalance)
 1. [Demo](#demo)
 
 ## Dependencies

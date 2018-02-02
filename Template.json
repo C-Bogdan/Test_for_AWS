@@ -19,17 +19,29 @@
 		"OperatingSystem": {
 			"Description": "Operating system used to select the appropriate regional Amazon Machine Image.",
 			"Type": "String",
-			"AllowedValues": ["amazonlinux", "redhat", "suse", "ubuntu", "windows"]
+			"Default": "redhat",
+			"AllowedValues": ["amazonlinux", "redhat", "suse", "ubuntu"]
 		},
 		"ImageId": {
 			"Description": "The Amazon Machine Image (\"AMI\") used to start the EC2 Instance.",
 			"Type": "String",
-			"AllowedValues": ["ami-0932686c"]
+			"MinLength": "10",
+			"MaxLength": "14",
+			"Default": "ami-0932686c"
 		},
-		"SecurityGroupPort": {
-			"Description": "Port number Range to be set in the Security Group ingress rules.",
+		"SecurityGroupPortSSH": {
+			"Description": "Port number used to allow SSH access on Security Group ingress rules.",
 			"Type": "String",
-			"AllowedValues": ["22", "3389"]
+			"MinLength": "2",
+			"MaxLength": "5",			
+			"Default": "22"
+		},
+		"SecurityGroupPortHTTP": {
+			"Description": "Port number used to allow HTTP access on Security Group ingress rules.",
+			"Type": "String",
+			"MinLength": "2",
+			"MaxLength": "5",			
+			"Default": "80"
 		}
 	},
 	"Resources": {
@@ -55,15 +67,28 @@
 				"SecurityGroupIngress": [{
 					"IpProtocol": "tcp",
 					"FromPort": {
-						"Ref": "SecurityGroupPort"
+						"Ref": "SecurityGroupPortSSH"
 					},
 					"ToPort": {
-						"Ref": "SecurityGroupPort"
+						"Ref": "SecurityGroupPortSSH"
 					},
 					"CidrIp": {
 						"Ref": "ConnectionLocation"
 					}
-				}]
+				},
+				{
+					"IpProtocol": "tcp",
+					"FromPort": {
+						"Ref": "SecurityGroupPortHTTP"
+					},
+					"ToPort": {
+						"Ref": "SecurityGroupPortHTTP"
+					},
+					"CidrIp": {
+						"Ref": "ConnectionLocation"
+					}
+				}
+				]
 			},
 			"Metadata": {
 				"AWS::CloudFormation::Designer": {
