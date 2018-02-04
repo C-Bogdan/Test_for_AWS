@@ -69,9 +69,42 @@ http://{Public DNS (IPv4)}/version.txt
 
 ## LoadBalance
 
+To create a load balancer go to EC2 Dashboard and scroll down to "Load Balancer" section.
+Select "Create Load Balancer" and after that you can create a Network Load balancer or a Aplication Load Balancer.
+I have selected Network Load Balancer , give a name , selected port 80 and selected all my 3 servers to be on this load balancer.
+Selected "Next: Configure Routing" button, provided a name and on the "Advanced Health Section" I have changed the interval to 10 seconds.
+Selected "Next: Register Targets" and selected all my 3 instances to be registered on this load balancer.
+Selected "Next: Review" and checked all the settings for this load balancer.
+Selected "Create" to create the load balancer.
+
+Once the load balancer is active this can be tested by calling the "DNS name:" of the same.
+In our case:
+http://{DNS name:}/version.txt 
+
+Request will land on one of our servers and will reply back with the text:
+
+"2.1.3"
+
+**[Back to top](#table-of-contents)**
+
+## Testing
+
+Automated testing script can be downloaded from [here](Test_webservice.sh).
+To use the same we need to provide the DNS name of the servers we neet to test as a parameter.
+This can be used also to test the load balancer.
+
+./Test_webservice.sh {DNS name}
+
+Also this can be setup on crontab to monitor the servers/load balancer and trigger e preset action.
+This I have set the task to run every minute, but can be contigured as desired.
+*/1 * * * * /opt/test_script.sh {DNS name} >/opt/test_script.txt
+ 
 **[Back to top](#table-of-contents)**
 
 ## Demo
 
+For testing purpuse we can call directly each one of the servers or we can call the load balancer.
+
+http://{DNS name:}/version.txt 
 
 **[Back to top](#table-of-contents)**
