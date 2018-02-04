@@ -23,7 +23,7 @@ This account needs to have at least one EC2 KeyPair in order to be able to creat
 Login to your AWS account and go to the CloudFormation section.
 Services > on Management Tool section, CloudFormation
 
-Download the template (Template.json file) provided here [a workaround link](Template.json).
+Download the template (Template.json file) provided [here](Template.json).
 Click on Create Stack and on section "Chose a template"  select "Upload a template for Amazon S3" and chose the template file downloaded above then click next.
 
 Give a name to the stack (Ex: Myfirststack)
