@@ -9,7 +9,6 @@ Intro section
 1. [Usage](#usage)
 1. [Testing](#testing)
 1. [LoadBalance](#loadbalance)
-1. [Demo](#demo)
 
 ## Dependencies
 
@@ -107,12 +106,4 @@ This I have set the task to run every minute, but can be contigured as desired.
 
 */1 * * * * /opt/test_script.sh {DNS name} >/opt/test_script.txt
  
-**[Back to top](#table-of-contents)**
-
-## Demo
-
-For testing purpuse we can call directly each one of the servers or we can call the load balancer.
-
-http://{DNS name:}/version.txt 
-
 **[Back to top](#table-of-contents)**
